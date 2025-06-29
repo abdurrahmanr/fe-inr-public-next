@@ -1,7 +1,16 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
+import { ReactNode } from "react";
 
-const AccordionComponent = ({ title, children, className }: any) => {
+const AccordionComponent = ({
+  title,
+  children,
+  className,
+}: {
+  title: string;
+  className: string;
+  children: ReactNode;
+}) => {
   return (
     <Accordion.Root type="single" collapsible>
       <Accordion.Item value="item-1">

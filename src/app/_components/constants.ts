@@ -1,4 +1,15 @@
-export const links = [
+export type LinkItem =
+  | {
+      type: "link";
+      url: string;
+    }
+  | {
+      type: "dropdown";
+      url: string;
+      options: string[];
+    };
+
+export const links: LinkItem[] = [
   {
     type: "link",
     url: "beranda",

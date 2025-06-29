@@ -7,7 +7,7 @@ import { Twirl as Hamburger } from "hamburger-react";
 import { boldNoRuin, toCapitalize } from "@/utils/utils";
 import Link from "next/link";
 import AccordionComponent from "./accordion";
-import { links } from "./constants";
+import { LinkItem, links } from "./constants";
 import Image from "next/image";
 
 const DesktopNav = () => {
@@ -31,7 +31,7 @@ const DesktopNav = () => {
 
           {/* Nav Desktop */}
           <div className="items-center gap-4 text-sm flex">
-            {links.map((link: any) => {
+            {links.map((link: LinkItem) => {
               if (link.type === "link") {
                 return (
                   <NavigationMenu.Item
@@ -65,7 +65,7 @@ const DesktopNav = () => {
                     />
                   </NavigationMenu.Trigger>
                   <NavigationMenu.Content className="absolute -ms-[50px] mt-4 flex animate-dropDownOut flex-col rounded-[7px] bg-white shadow  outline-1 outline-[#D1D5DB] data-[state=open]:animate-dropDown overflow-hidden">
-                    {link.options.map((option: any) => (
+                    {link.options.map((option: string) => (
                       <Link
                         key={option}
                         href={`/${link.url}/${option}`}
@@ -111,7 +111,7 @@ const MobileNav = () => {
       <div
         className={`z-0 absolute left-0 flex w-full flex-col gap-4 bg-white text-center shadow transition-all duration-500 lg:hidden ${show ? `opacity-100 top-[75px]` : `opacity-0 -top-[1000px]`}`}
       >
-        {links.map((link: any) => {
+        {links.map((link: LinkItem) => {
           if (link.type === "link") {
             return (
               <li
@@ -133,7 +133,7 @@ const MobileNav = () => {
 
           return (
             <AccordionComponent key={link.url} title={link.url} className={``}>
-              {link.options.map((option: any) => (
+              {link.options.map((option: string) => (
                 <Link
                   key={option}
                   href={`${link.url}/${option}`}

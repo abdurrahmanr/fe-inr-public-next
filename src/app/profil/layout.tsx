@@ -21,19 +21,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="ms-auto w-fit">
           <p className="text-xl font-medium">Profile</p>
           <div className="mt-10 flex flex-col gap-9">
-            {links[1]?.options?.map((data) => (
-              <Link
-                href={data}
-                key={data}
-                className={`${
-                  pathname.match(data) ? "font-medium" : "text-greyCol"
-                } text-xs capitalize ${boldNoRuin}`}
-              >
-                {data === "struktur-organisasi"
-                  ? data
-                  : data + " Inready workgroup"}
-              </Link>
-            ))}
+            {links[1]?.type === "dropdown" &&
+              links[1]?.options?.map((data: string) => (
+                <Link
+                  href={data}
+                  key={data}
+                  className={`${
+                    pathname.match(data) ? "font-medium" : "text-greyCol"
+                  } text-xs capitalize ${boldNoRuin}`}
+                >
+                  {data === "struktur-organisasi"
+                    ? data
+                    : data + " Inready workgroup"}
+                </Link>
+              ))}
           </div>
         </div>
       </div>
