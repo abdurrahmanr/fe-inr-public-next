@@ -3,6 +3,10 @@ import "./globals.css";
 import Nav from "./_components/navigation";
 import Breadcrumb from "./_components/breadcrumbs";
 import Providers from "./providers";
+import { Poppins } from "next/font/google";
+import Footer from "./_components/footer";
+
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700"] });
 
 export const metadata: Metadata = {
   title: { template: "%s | Inready Workgroup", default: "Inready Workgroup" },
@@ -15,13 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.className}>
       <body>
         <Nav />
-        <div className="pt-[80px] max-w-6xl mx-auto">
+        <div className="pt-[80px]">
           <Breadcrumb />
           <Providers>{children}</Providers>
         </div>
+        <Footer />
       </body>
     </html>
   );

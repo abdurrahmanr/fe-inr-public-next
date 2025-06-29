@@ -46,7 +46,7 @@ const DesktopNav = () => {
                     className="rounded bg-opacity-0 px-4 py-2 transition duration-500 ease-in-out hover:bg-primary/20 capitalize"
                   >
                     <Link
-                      className={`${isActive ? "font-bold" : ""}`}
+                      className={`${isActive ? "font-semibold" : "text-greyCol"}`}
                       href={link.url === "beranda" ? "/" : `/${link.url}`}
                       replace
                     >
@@ -60,24 +60,20 @@ const DesktopNav = () => {
               return (
                 <NavigationMenu.Item key={link.url}>
                   <NavigationMenu.Trigger
-                    className={`group flex items-center rounded px-4 py-2 capitalize data-[state=open]:bg-primary/20 data-[state=open]:font-semibold data-[state=open]:text-black`}
+                    className={`group flex items-center rounded px-4 py-2 capitalize data-[state=open]:bg-primary/20 data-[state=open]:font-semibold data-[state=open]:text-black ${pathname.includes(link.url) ? "font-semibold" : "text-greyCol"}`}
                     title={link.url}
                   >
-                    <p
-                      className={`${boldNoRuin} ${pathname.includes(link.url) && "font-bold"}`}
-                      title={link.url}
-                    >
+                    <p className={`${boldNoRuin}`} title={link.url}>
                       {link.url}
                     </p>
                     <TriangleDownIcon
-                      className="mt-[2px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
+                      className="transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
                       aria-hidden
                     />
                   </NavigationMenu.Trigger>
                   <NavigationMenu.Content className="absolute -ms-[50px] mt-4 flex animate-dropDownOut flex-col rounded-[7px] bg-white shadow  outline-1 outline-[#D1D5DB] data-[state=open]:animate-dropDown overflow-hidden">
                     {link.options.map((option: string) => {
                       const isActive = pathname.includes(option);
-                      console.log(isActive);
                       return (
                         <Link
                           key={option}
