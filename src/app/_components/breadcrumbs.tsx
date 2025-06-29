@@ -8,6 +8,8 @@ const Breadcrumb = () => {
   const pathname = usePathname();
   let currentLink = "";
 
+  if (pathname === "/") return;
+
   const isInteger = (string: string) => {
     const number = +string;
     return number;

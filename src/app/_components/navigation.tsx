@@ -9,8 +9,11 @@ import Link from "next/link";
 import AccordionComponent from "./accordion";
 import { LinkItem, links } from "./constants";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const DesktopNav = () => {
+  const pathname = usePathname();
+
   return (
     <NavigationMenu.Root
       className="fixed z-20 hidden lg:flex h-[80px] w-full items-center justify-between bg-white px-5 shadow sm:px-10 xl:px-[156px] 2xl:px-[348px]"
@@ -32,18 +35,22 @@ const DesktopNav = () => {
           {/* Nav Desktop */}
           <div className="items-center gap-4 text-sm flex">
             {links.map((link: LinkItem) => {
+              const isActive =
+                pathname.includes(link.url) ||
+                (pathname === "/" && link.url === "beranda");
+
               if (link.type === "link") {
                 return (
                   <NavigationMenu.Item
                     key={link.url}
-                    className="rounded bg-opacity-0 px-4 py-2 transition duration-500 ease-in-out hover:bg-primary/20"
+                    className="rounded bg-opacity-0 px-4 py-2 transition duration-500 ease-in-out hover:bg-primary/20 capitalize"
                   >
                     <Link
+                      className={`${isActive ? "font-bold" : ""}`}
                       href={link.url === "beranda" ? "/" : `/${link.url}`}
-                      title={toCapitalize(link.url)}
                       replace
                     >
-                      {toCapitalize(link.url)}
+                      {link.url}
                     </Link>
                   </NavigationMenu.Item>
                 );
@@ -56,7 +63,10 @@ const DesktopNav = () => {
                     className={`group flex items-center rounded px-4 py-2 capitalize data-[state=open]:bg-primary/20 data-[state=open]:font-semibold data-[state=open]:text-black`}
                     title={link.url}
                   >
-                    <p className={`${boldNoRuin}`} title={link.url}>
+                    <p
+                      className={`${boldNoRuin} ${pathname.includes(link.url) && "font-bold"}`}
+                      title={link.url}
+                    >
                       {link.url}
                     </p>
                     <TriangleDownIcon
@@ -65,17 +75,20 @@ const DesktopNav = () => {
                     />
                   </NavigationMenu.Trigger>
                   <NavigationMenu.Content className="absolute -ms-[50px] mt-4 flex animate-dropDownOut flex-col rounded-[7px] bg-white shadow  outline-1 outline-[#D1D5DB] data-[state=open]:animate-dropDown overflow-hidden">
-                    {link.options.map((option: string) => (
-                      <Link
-                        key={option}
-                        href={`/${link.url}/${option}`}
-                        className={`px-6  py-4 capitalize hover:bg-primary hover:bg-opacity-20 hover:font-semibold ${boldNoRuin}`}
-                        title={option}
-                        replace
-                      >
-                        {option}
-                      </Link>
-                    ))}
+                    {link.options.map((option: string) => {
+                      const isActive = pathname.includes(option);
+                      console.log(isActive);
+                      return (
+                        <Link
+                          key={option}
+                          href={`/${link.url}/${option}`}
+                          className={`px-6 py-4 capitalize hover:bg-primary/20 hover:font-semibold ${boldNoRuin} ${isActive && "font-semibold bg-primary/20"}`}
+                          replace
+                        >
+                          {option}
+                        </Link>
+                      );
+                    })}
                   </NavigationMenu.Content>
                 </NavigationMenu.Item>
               );

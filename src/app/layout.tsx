@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "./_components/navigation";
 import Breadcrumb from "./_components/breadcrumbs";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: { template: "%s | Inready Workgroup", default: "Inready Workgroup" },
@@ -19,7 +20,7 @@ export default function RootLayout({
         <Nav />
         <div className="pt-[80px] max-w-6xl mx-auto">
           <Breadcrumb />
-          {children}
+          <Providers>{children}</Providers>
         </div>
       </body>
     </html>
