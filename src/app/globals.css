@@ -1,26 +1,35 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #ffc400;
+  --color-secondary: #121212;
+  --color-greyCol: #576974;
+  --color-yellowsecondary: #cc8700;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  --animate-dropDown: dropDown 0.25s ease;
+  --animate-dropDownOut: dropDownOut 0.25s ease;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes dropDown {
+    0% {
+      opacity: 0;
+      transform: scale(0.9) translateY(-10px);
+    }
+    100% {
+      opacity: 100;
+      transform: scale(1) translateY(0px);
+    }
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @keyframes dropDownOut {
+    0% {
+      opacity: 100;
+      transform: scale(1) translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.9) translateY(-10px);
+    }
+  }
 }
