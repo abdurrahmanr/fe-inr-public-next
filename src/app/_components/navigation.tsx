@@ -134,7 +134,7 @@ const MobileNav = () => {
         <div className="w-[80px] relative h-[80px]">
           <Link href="/">
             <Image
-              src="/inr.png"
+              src="/logo.png"
               alt="Logo Inready Workgroup"
               className="mx-auto h-[80px] hover:text-black lg:mx-0 w-10"
               fill
@@ -150,7 +150,7 @@ const MobileNav = () => {
         />
       </div>
       <div
-        className={`h-[calc(100vh_-_80px)] justify-center z-0 absolute left-0 flex w-full flex-col gap-6 bg-white text-left shadow transition-all duration-500 lg:hidden ${show ? `opacity-100 top-[75px] flex` : `opacity-0 top-[70px] hidden`}`}
+        className={`h-[calc(100vh_-_80px)] justify-end z-0 absolute left-0 flex w-full flex-col  bg-white gap-6 text-left shadow transition-all duration-500 lg:hidden ${show ? `opacity-100 top-[75px] flex` : `opacity-0 top-[70px] hidden`}`}
       >
         <AnimatePresence>
           {links.map((link: LinkItem, i) => {
@@ -163,7 +163,7 @@ const MobileNav = () => {
                 <li
                   key={link.url}
                   className={cn(
-                    "rounded bg-opacity-0 px-4 py-2 transition duration-200 ease-in-out hover:bg-primary hover:bg-opacity-20 list-none font-semibold text-4xl text-greyCol",
+                    "rounded bg-opacity-0 px-4 py-2 transition duration-200 ease-in-out hover:bg-primary hover:bg-opacity-20 list-none font-semibold text-3xl text-greyCol",
                     isActive && "underline decoration-primary text-secondary",
                   )}
                 >
@@ -192,26 +192,37 @@ const MobileNav = () => {
             }
 
             return (
-              <AccordionComponent
-                key={link.url}
-                title={link.url}
-                className={`text-4xl font-semibold text-left pl-4`}
-              >
-                {link.options.map((option: string) => (
-                  <Link
-                    key={option}
-                    href={`/${link.url}/${option}`}
-                    className={`flex justify-center gap-4 py-2 capitalize`}
-                    replace
-                    title={option}
-                    onClick={() => {
-                      setShow(!show);
-                    }}
-                  >
-                    {option}
-                  </Link>
-                ))}
-              </AccordionComponent>
+              <>
+                <p
+                  className={cn(
+                    "font-semibold text-3xl text-greyCol px-4 capitalize",
+                    isActive && "text-secondary",
+                  )}
+                >
+                  {link.url}
+                </p>
+                {link.options.map((option: string) => {
+                  const isActive = pathname.includes(option);
+                  return (
+                    <Link
+                      key={option}
+                      href={`/${link.url}/${option}`}
+                      className={cn(
+                        "font-semibold text-3xl text-greyCol pl-12 capitalize",
+                        isActive &&
+                          "underline decoration-primary text-secondary",
+                      )}
+                      replace
+                      title={option}
+                      onClick={() => {
+                        setShow(!show);
+                      }}
+                    >
+                      {option}
+                    </Link>
+                  );
+                })}
+              </>
             );
           })}
         </AnimatePresence>
