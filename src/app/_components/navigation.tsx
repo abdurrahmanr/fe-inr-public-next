@@ -150,7 +150,7 @@ const MobileNav = () => {
         />
       </div>
       <div
-        className={`h-[calc(100vh_-_80px)] justify-end z-0 absolute left-0 flex w-full flex-col  bg-white gap-6 text-left shadow transition-all duration-500 lg:hidden ${show ? `opacity-100 top-[75px] flex` : `opacity-0 top-[70px] hidden`}`}
+        className={`h-[calc(100dvh-80px)] z-0 absolute left-0 flex w-full flex-col justify-center-safe gap-4 bg-white text-left shadow transition-all duration-500 lg:hidden ${show ? `opacity-100 top-[80px] flex` : `opacity-0 top-[70px] hidden`}`}
       >
         <AnimatePresence>
           {links.map((link: LinkItem, i) => {
@@ -163,7 +163,7 @@ const MobileNav = () => {
                 <li
                   key={link.url}
                   className={cn(
-                    "rounded bg-opacity-0 px-4 py-2 transition duration-200 ease-in-out hover:bg-primary hover:bg-opacity-20 list-none font-semibold text-3xl text-greyCol",
+                    "rounded bg-opacity-0 pl-6 py-2 transition duration-200 ease-in-out hover:bg-primary hover:bg-opacity-20 list-none font-semibold text-2xl text-greyCol",
                     isActive && "underline decoration-primary text-secondary",
                   )}
                 >
@@ -184,7 +184,6 @@ const MobileNav = () => {
                       }}
                     >
                       {toCapitalize(link.url)}
-                      {/* <WordsPullUp text={toCapitalize(link.url)} /> */}
                     </Link>
                   </motion.div>
                 </li>
@@ -195,7 +194,7 @@ const MobileNav = () => {
               <>
                 <p
                   className={cn(
-                    "font-semibold text-3xl text-greyCol px-4 capitalize",
+                    "font-semibold text-2xl text-greyCol pl-6 capitalize",
                     isActive && "text-secondary",
                   )}
                 >
@@ -208,7 +207,7 @@ const MobileNav = () => {
                       key={option}
                       href={`/${link.url}/${option}`}
                       className={cn(
-                        "font-semibold text-3xl text-greyCol pl-12 capitalize",
+                        "font-semibold text-2xl text-greyCol pl-14 capitalize",
                         isActive &&
                           "underline decoration-primary text-secondary",
                       )}
