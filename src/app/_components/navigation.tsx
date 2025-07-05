@@ -11,7 +11,6 @@ import AccordionComponent from "./accordion";
 import { LinkItem, links } from "./constants";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { WordsPullUp } from "./textUp";
 import { cn } from "@/utils/cn";
 
 const DesktopNav = () => {
