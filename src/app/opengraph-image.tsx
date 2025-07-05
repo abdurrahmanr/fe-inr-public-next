@@ -18,7 +18,7 @@ export default async function Image() {
           justifyContent: "center",
         }}
       >
-        <img src="/logo.png" height="100" />
+        <img src="logo.png" height="100" />
       </div>
     ),
   );
