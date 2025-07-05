@@ -1,6 +1,20 @@
 import { zeroPad } from "react-countdown";
 
-const Renderer = ({ days, hours, minutes, seconds, completed }) => {
+type RendererProps = {
+  days: string;
+  hours: string;
+  minutes: string;
+  seconds: string;
+  completed: boolean;
+};
+
+const Renderer = ({
+  days,
+  hours,
+  minutes,
+  seconds,
+  completed,
+}: RendererProps) => {
   if (completed) {
     return (
       <div className="flex justify-evenly">
