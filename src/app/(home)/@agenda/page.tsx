@@ -13,10 +13,10 @@ const Page = () => {
   const { data, isLoading } = useSWR("https://dummyjson.com/posts", fetcher);
 
   return (
-    <div className=" h-fit bg-white  max-w-6xl mx-auto">
-      <div className="my-24 grid grid-cols-12">
+    <div className="h-fit bg-white  max-w-6xl mx-auto my-12">
+      <p className={`${underlineTitle} text-xl font-semibold`}>Agenda</p>
+      <div className="mt-12  grid grid-cols-12">
         <div className="col-span-full flex flex-col lg:col-span-6">
-          <p className={`${underlineTitle} text-xl font-semibold`}>Agenda</p>
           <div className="mt-10 lg:mt-auto lg:my-auto flex justify-center">
             {!isLoading && (
               <div className="h-[409px] w-[338px] overflow-hidden rounded-[20px] bg-primary shadow-xl">
@@ -44,7 +44,7 @@ const Page = () => {
             )}
           </div>
         </div>
-        <div className="col-span-full mt-10 flex flex-col items-center justify-center lg:col-span-6">
+        <div className="col-span-full flex flex-col items-center justify-center lg:col-span-6">
           <p className="font-semibold text-yellowsecondary">
             Agenda yang akan datang
           </p>

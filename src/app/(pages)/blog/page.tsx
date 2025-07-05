@@ -8,27 +8,32 @@ import { boldNoRuin } from "@/utils/utils";
 import useSWR from "swr";
 import { fetcher } from "@/utils/fetcher";
 import Link from "next/link";
+import Image from "next/image";
+import eventIcon from "@/assets/icons/event.svg";
+import webIcon from "@/assets/icons/web.svg";
+import mobileIcon from "@/assets/icons/mobile.svg";
+import designIcon from "@/assets/icons/design.svg";
 
 const categories = [
   {
     id: 1,
     title: "event",
-    // icon: eventIcon,
+    icon: eventIcon,
   },
   {
     id: 2,
     title: "mobile",
-    // icon: mobileIcon,
+    icon: mobileIcon,
   },
   {
     id: 3,
     title: "desain",
-    // icon: designIcon,
+    icon: designIcon,
   },
   {
     id: 4,
     title: "web",
-    // icon: webIcon,
+    icon: webIcon,
   },
 ];
 const Page = () => {
@@ -61,7 +66,7 @@ const Page = () => {
             >
               <div className="flex items-center gap-2 font-medium capitalize">
                 <div className="aspect-square w-10 rounded-small bg-primary/30 p-3 transition-all duration-500 group-hover:bg-white/60 group-data-[state=active]:bg-white/60">
-                  {/* <img src={category.icon} alt="" className="h-full w-full" /> */}
+                  <Image src={category.icon} alt="" className="h-full w-full" />
                 </div>
                 <p className="text-xs">{category.title}</p>
               </div>

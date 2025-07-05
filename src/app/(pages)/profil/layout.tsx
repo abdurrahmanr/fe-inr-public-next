@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { links } from "../_components/constants";
 import { boldNoRuin } from "@/utils/utils";
+import { links } from "@/app/_components/constants";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -12,7 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const struktur = pathname.includes("struktur-organisasi");
   return (
     <div
-      className={`${struktur ? "grid-cols-11" : "grid-cols-12"} grid  gap-x-0`}
+      className={`${struktur ? "grid-cols-11" : "grid-cols-12"} grid  gap-x-0 mb-12`}
     >
       <div className="col-span-full mt-20 lg:col-span-9">{children}</div>
       <div

@@ -8,7 +8,7 @@ import Footer from "./_components/footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -25,8 +25,7 @@ export default function RootLayout({
     <html lang="en" className={poppins.className}>
       <body>
         <Nav />
-        <div className="pt-[80px] mx-auto">
-          <Breadcrumb />
+        <div className="pt-[80px]">
           <Providers>{children}</Providers>
         </div>
         <Footer />
