@@ -13,6 +13,13 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: { template: "%s | Inready Workgroup", default: "Inready Workgroup" },
   description: "Study Club IT UIN Alauddin Makassar",
+  openGraph: {
+    siteName: "Inready Workgroup",
+    title: { template: "%s | Inready Workgroup", default: "Inready Workgroup" },
+    description: "Study Club IT UIN Alauddin Makassar",
+    type: "website",
+    locale: "id_ID",
+  },
 };
 
 export default function RootLayout({
