@@ -13,16 +13,12 @@ export default async function Image() {
     (
       <div
         style={{
-          fontSize: 128,
-          background: "white",
-          width: "100%",
-          height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        Testing
+        <img src="/logo.png" height="100" />
       </div>
     ),
   );
