@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { join } from "node:path";
+import { readFile } from "node:fs/promises";
 
 // Image metadata
 export const size = {
@@ -9,6 +11,9 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function Image() {
+  const logoData = await readFile(join(process.cwd(), "logo.png"));
+  const logoSrc = Uint8Array.from(logoData).buffer;
+
   return new ImageResponse(
     (
       <div
@@ -18,7 +23,7 @@ export default async function Image() {
           justifyContent: "center",
         }}
       >
-        <img src="logo.png" height="100" />
+        <img src={logoSrc} height="100" />
       </div>
     ),
   );
