@@ -26,7 +26,7 @@ const DesktopNav = () => {
           <NavigationMenu.Item className="w-[80px] h-[80px] relative">
             <Link href="/">
               <Image
-                src="/inr.png"
+                src="/logo.png"
                 alt="Logo Inready Workgroup"
                 className="mx-auto h-[80px] hover:text-black lg:mx-0"
                 fill
