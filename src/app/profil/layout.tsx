@@ -28,7 +28,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   key={data}
                   className={`${
                     pathname.match(data) ? "font-medium" : "text-greyCol"
-                  } text-xs capitalize ${boldNoRuin}`}
+                  } text-sm capitalize ${boldNoRuin}`}
                 >
                   {data === "struktur-organisasi"
                     ? data

@@ -26,8 +26,12 @@ const Timeline = () => {
         <div key={index} className="group grid grid-cols-12">
           <div className="col-span-full grid w-full grid-cols-11">
             <div className="relative order-last col-span-8 flex h-full w-full flex-col justify-center gap-3 rounded-[10px] bg-black px-6 py-6 capitalize text-white shadow-lg group-even:bg-primary md:col-span-5 md:group-odd:order-first md:group-even:order-last">
-              <p className="text-left text-xs font-semibold">{data.judul}</p>
-              <p className="text-[10px]">{data.deskripsi}</p>
+              <p className="text-left font-semibold text-sm group-even:text-secondary">
+                {data.judul}
+              </p>
+              <p className="text-xs group-even:text-secondary">
+                {data.deskripsi}
+              </p>
               <div className="absolute -left-3 m-auto h-0 w-0 rotate-180 border-b-[14px] border-l-[25px] border-t-[14px] border-b-transparent border-t-transparent group-odd:border-l-black group-even:border-l-primary md:group-odd:-right-3 md:group-odd:left-auto md:group-odd:rotate-0"></div>
             </div>
             <div className="relative col-span-1 flex items-end justify-center">

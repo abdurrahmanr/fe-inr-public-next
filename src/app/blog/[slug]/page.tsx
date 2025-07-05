@@ -42,7 +42,7 @@ const BlogDetail = async ({
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <div className="mt-14 flex h-full w-full flex-col gap-3 px-6 lg:px-[105px]">
+        <div className="mt-14 flex h-full w-full flex-col gap-3">
           <p className="text-sm font-bold capitalize text-yellowSecondary lg:text-[15px]">
             {/* {dataBlogDetail?.data?.creator} */}
           </p>
@@ -56,12 +56,12 @@ const BlogDetail = async ({
             <p className="capitalize">{dataBlogDetail?.category}</p>
           </div>
         </div>
-        <div className="mt-14 aspect-video h-72 w-11/12 lg:w-4/5 flex items-center justify-center bg-[#f4f5f6] animate-pulse">
+        <div className="mt-14 w-full flex items-center justify-center bg-[#f4f5f6]">
           {dataBlogDetail?.thumbnail !== null ? (
             <img
               src={dataBlogDetail?.thumbnail}
               alt=""
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover aspect-video"
             />
           ) : (
             <>
@@ -70,7 +70,7 @@ const BlogDetail = async ({
             </>
           )}
         </div>
-        <div className=" mt-14 flex h-full w-full flex-col gap-3 px-6 lg:px-[105px]">
+        <div className=" mt-14 flex h-full w-full flex-col gap-3">
           <p className="text-2xl font-bold leading-8 text-secondary [text-wrap:balance] lg:text-4xl lg:leading-[48px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod.

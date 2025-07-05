@@ -6,7 +6,10 @@ import Providers from "./providers";
 import { Poppins } from "next/font/google";
 import Footer from "./_components/footer";
 
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: { template: "%s | Inready Workgroup", default: "Inready Workgroup" },
@@ -22,7 +25,7 @@ export default function RootLayout({
     <html lang="en" className={poppins.className}>
       <body>
         <Nav />
-        <div className="pt-[80px]">
+        <div className="pt-[80px] mx-auto">
           <Breadcrumb />
           <Providers>{children}</Providers>
         </div>

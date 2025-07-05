@@ -1,8 +1,9 @@
 "use client";
+import { motion, AnimatePresence } from "motion/react";
 
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Twirl as Hamburger } from "hamburger-react";
 import { boldNoRuin, toCapitalize } from "@/utils/utils";
 import Link from "next/link";
@@ -10,6 +11,8 @@ import AccordionComponent from "./accordion";
 import { LinkItem, links } from "./constants";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { WordsPullUp } from "./textUp";
+import { cn } from "@/utils/cn";
 
 const DesktopNav = () => {
   const pathname = usePathname();
@@ -98,17 +101,47 @@ const DesktopNav = () => {
 
 const MobileNav = () => {
   const [show, setShow] = useState(false);
+  const pathname = usePathname();
 
+  useEffect(() => {
+    if (show) {
+      // Lock scroll
+      document.body.classList.add("overflow-hidden");
+    } else {
+      // Unlock scroll
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    // Clean up on unmount
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [show]);
+
+  const linkVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: (i: any) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: i * 0.1, // stagger each link by 0.1s
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    }),
+    exit: { opacity: 0, x: 50, transition: { duration: 0.2 } },
+  };
   return (
-    <nav className="h-[80px] fixed bg-white w-full z-50 lg:hidden flex">
+    <nav className="h-[80px] fixed bg-white w-full z-50 lg:hidden flex shadow">
       <div className="flex justify-between px-5 sm:px-10 h-full z-50 relative w-full items-center">
-        <Link href="/">
-          <img
-            src="/inr.png"
-            alt="Logo Inready Workgroup"
-            className="h-[80px] hover:text-black"
-          />
-        </Link>
+        <div className="w-[80px] relative h-[80px]">
+          <Link href="/">
+            <Image
+              src="/inr.png"
+              alt="Logo Inready Workgroup"
+              className="mx-auto h-[80px] hover:text-black lg:mx-0 w-10"
+              fill
+            />
+          </Link>
+        </div>
         <Hamburger
           toggled={show}
           toggle={setShow}
@@ -118,46 +151,71 @@ const MobileNav = () => {
         />
       </div>
       <div
-        className={`z-0 absolute left-0 flex w-full flex-col gap-4 bg-white text-center shadow transition-all duration-500 lg:hidden ${show ? `opacity-100 top-[75px]` : `opacity-0 -top-[1000px]`}`}
+        className={`h-[calc(100vh_-_80px)] justify-center z-0 absolute left-0 flex w-full flex-col gap-6 bg-white text-left shadow transition-all duration-500 lg:hidden ${show ? `opacity-100 top-[75px] flex` : `opacity-0 top-[70px] hidden`}`}
       >
-        {links.map((link: LinkItem) => {
-          if (link.type === "link") {
-            return (
-              <li
-                key={link.url}
-                className="rounded bg-opacity-0 px-4 py-2 transition duration-200 ease-in-out hover:bg-primary hover:bg-opacity-20 list-none"
-              >
-                <Link
-                  href={link.url === "beranda" ? "/" : link.url}
-                  title={toCapitalize(link.url)}
-                  onClick={() => {
-                    setShow(!show);
-                  }}
-                >
-                  {toCapitalize(link.url)}
-                </Link>
-              </li>
-            );
-          }
+        <AnimatePresence>
+          {links.map((link: LinkItem, i) => {
+            const isActive =
+              pathname.includes(link.url) ||
+              (pathname === "/" && link.url === "beranda");
 
-          return (
-            <AccordionComponent key={link.url} title={link.url} className={``}>
-              {link.options.map((option: string) => (
-                <Link
-                  key={option}
-                  href={`${link.url}/${option}`}
-                  className={`flex justify-center gap-4 py-2 capitalize`}
-                  title={option}
-                  onClick={() => {
-                    setShow(!show);
-                  }}
+            if (link.type === "link") {
+              return (
+                <li
+                  key={link.url}
+                  className={cn(
+                    "rounded bg-opacity-0 px-4 py-2 transition duration-200 ease-in-out hover:bg-primary hover:bg-opacity-20 list-none font-semibold text-4xl text-greyCol",
+                    isActive && "underline decoration-primary text-secondary",
+                  )}
                 >
-                  {option}
-                </Link>
-              ))}
-            </AccordionComponent>
-          );
-        })}
+                  <motion.div
+                    // key={link.name}
+                    custom={i}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    // variants={linkVariants}
+                  >
+                    <Link
+                      href={link.url === "beranda" ? "/" : `/${link.url}`}
+                      title={toCapitalize(link.url)}
+                      replace
+                      onClick={() => {
+                        setShow(!show);
+                      }}
+                    >
+                      {toCapitalize(link.url)}
+                      {/* <WordsPullUp text={toCapitalize(link.url)} /> */}
+                    </Link>
+                  </motion.div>
+                </li>
+              );
+            }
+
+            return (
+              <AccordionComponent
+                key={link.url}
+                title={link.url}
+                className={`text-4xl font-semibold text-left pl-4`}
+              >
+                {link.options.map((option: string) => (
+                  <Link
+                    key={option}
+                    href={`/${link.url}/${option}`}
+                    className={`flex justify-center gap-4 py-2 capitalize`}
+                    replace
+                    title={option}
+                    onClick={() => {
+                      setShow(!show);
+                    }}
+                  >
+                    {option}
+                  </Link>
+                ))}
+              </AccordionComponent>
+            );
+          })}
+        </AnimatePresence>
       </div>
     </nav>
   );

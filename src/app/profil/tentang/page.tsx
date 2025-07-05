@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 const TentangPage = () => {
   return (
     <div>
-      <div className="w-full text-justify">
+      <div className="w-full text-justify text-sm md:text-base">
         <p className="text-left text-2xl font-medium text-secondary">
           Tentang Inready Workgroup
         </p>
-        <div className="mt-9 flex flex-col gap-9 text-xs text-greyCol indent-[35px]">
+        <div className="mt-9 flex flex-col gap-9 text-greyCol indent-[35px]">
           <p>
             Inready Workgroup merupakan salah satu organisasi yang ada di
             Universitas Islam Negeri Alauddin Makassar yang didirikan pada tahun

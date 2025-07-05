@@ -13,7 +13,7 @@ const Page = () => {
         <p className="text-left text-2xl font-medium text-secondary">
           Sejarah Inready Workgroup
         </p>
-        <div className="mt-9 flex flex-col gap-9 text-xs text-greyCol indent-[35px]">
+        <div className="mt-9 flex flex-col gap-9 text-greyCol indent-[35px] text-sm md:text-base">
           <p>
             Lorem ipsum dolor sit amet consectetur. A at libero orci luctus
             sollicitudin posuere lectus libero pellentesque. Tempus tellus urna

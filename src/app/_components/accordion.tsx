@@ -7,7 +7,7 @@ const AccordionComponent = ({
   children,
   className,
 }: {
-  title: string;
+  title: any;
   className: string;
   children: ReactNode;
 }) => {
@@ -15,7 +15,7 @@ const AccordionComponent = ({
     <Accordion.Root type="single" collapsible className="z-10">
       <Accordion.Item value="item-1">
         <Accordion.Trigger
-          className={`capitalize py-2 w-full group flex justify-center items-center data-[state=open]:bg-primary/20 ${className}`}
+          className={`capitalize py-2 w-full group flex items-center data-[state=open]:bg-primary/20 ${className}`}
         >
           {title}
           <TriangleDownIcon

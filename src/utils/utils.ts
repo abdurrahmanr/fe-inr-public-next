@@ -6,7 +6,7 @@ export const toCapitalize = (word: string) => {
 };
 
 export const underlineTitle =
-  "after:block after:h-[3px] after:w-14 after:bg-primary after:mt-[12px]";
+  "after:block after:h-[3px] after:bg-primary after:mt-[12px] after:animate-grow";
 
 export const BASE_URL = "https://inr.hmjti-uinam.com/api/public";
 
