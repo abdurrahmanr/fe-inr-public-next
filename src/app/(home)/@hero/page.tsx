@@ -15,6 +15,8 @@ import "swiper/css/pagination";
 import useSWR from "swr";
 import "./hero.css";
 import { fetcher } from "@/utils/fetcher";
+import Image from "next/image";
+import Button from "@/app/_components/button";
 
 const Hero = () => {
   const { data: slider, isLoading } = useSWR(
@@ -51,10 +53,10 @@ const Hero = () => {
                 <>
                   <div className="col-span-full flex h-full w-full items-end lg:col-span-1">
                     <div className="relative h-full lg:h-4/5 w-full overflow-hidden lg:rounded-tl-[63px] after:bg-black/75 after:h-full after:w-full after:block after:absolute after:top-0 lg:after:bg-transparent">
-                      <img
+                      <Image
                         src={slide.thumbnail}
                         alt=""
-                        loading="lazy"
+                        fill
                         className={`${
                           isActive ? "scale-125" : "scale-100"
                         } h-full w-full object-cover transition-transform duration-[5000ms] ease-in-out`}
@@ -75,10 +77,11 @@ const Hero = () => {
                       {slide.title}
                     </p>
                     <p className="mb-72 lg:mb-0">{slide.description}</p>
-                    {/* <Button */}
-                    {/*   title={"Selengkapnya"} */}
-                    {/*   className="bg-transparent -mt-32 lg:mt-0 text-yellowSecondary lg:text-white px-0 lg:px-6 lg:bg-secondary" */}
-                    {/* /> */}
+                    <Button
+                      title={"Selengkapnya"}
+                      link=""
+                      className="bg-transparent -mt-32 lg:mt-0 text-yellowSecondary lg:text-white px-0 lg:px-6 lg:bg-secondary"
+                    />
                   </div>
                 </>
               )}

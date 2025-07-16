@@ -13,14 +13,14 @@ export async function generateMetadata(
   const slug = (await params).slug;
   const blog = await fetchBlog({ slug });
 
-  const previousImages = (await parent).openGraph?.images || [];
   return {
     title: blog.title
       .split(" ")
       .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" "),
+    description: blog.description,
     openGraph: {
-      images: [blog.thumbnail, ...previousImages],
+      images: [blog.thumbnail],
     },
   };
 }
