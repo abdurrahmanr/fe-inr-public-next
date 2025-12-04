@@ -14,7 +14,6 @@ import webIcon from "@/assets/icons/web.svg";
 import mobileIcon from "@/assets/icons/mobile.svg";
 import designIcon from "@/assets/icons/design.svg";
 import img from "@/assets/kegiatan.png";
-import ReactPaginate from "react-paginate";
 
 const categories = [
     {
@@ -38,9 +37,9 @@ const categories = [
         icon: webIcon,
     },
 ];
-const Blog = () => {
+const Blog = ({ posts }: any) => {
     const [selected, setSelected] = useState("event");
-    const { data: posts, isLoading } = useSWR("/api/blog", fetcher);
+    // const { data: posts, isLoading } = useSWR("/api/blog", fetcher);
 
     return (
         <div>
@@ -102,57 +101,44 @@ const Blog = () => {
                         Blog Inready Workgroup
                     </p>
                     <div
-                        className={`my-16 grid grid-cols-12 gap-y-5 lg:gap-12`}
+                        className={`mt-16 grid grid-cols-12 grid-rows-12 gap-y-5 lg:gap-12`}
                     >
-                        {isLoading
-                            ? "Loading"
-                            : posts?.data.map((data: any) => (
-                                  <Tabs.Content
-                                      key={data.title}
-                                      className="group row-span-1 relative z-0 col-span-full rounded-small transition-all duration-500 hover:bg-greyCol/10 data-[state=inactive]:hidden"
-                                      value={"event"}
-                                      asChild
-                                  >
-                                      <Link
-                                          href={`/blog/${data.slug}`}
-                                          className="flex h-full w-full flex-col items-center gap-x-0 lg:flex-row lg:gap-x-10"
-                                      >
-                                          <div className="h-[274px] w-3/4 overflow-hidden rounded-sm lg:w-[234px]">
-                                              <Image
-                                                  src={img}
-                                                  alt=""
-                                                  loading="lazy"
-                                                  className="h-full w-full object-cover transition-all duration-1000 group-hover:scale-105"
-                                              />
-                                          </div>
-                                          <div className="mt-10 flex h-1/2 w-3/4 flex-col gap-1 lg:mt-0">
-                                              <p className="text-xs font-semibold capitalize tracking-[3px] text-yellowSecondary">
-                                                  {data.category}
-                                              </p>
-                                              <p className="mt-1 text-xs font-bold leading-7 text-secondary">
-                                                  {data.title}
-                                              </p>
-                                              <p className="text-[10px] text-greyCol">
-                                                  {data.content}
-                                              </p>
-                                          </div>
-                                      </Link>
-                                  </Tabs.Content>
-                              ))}
+                        {posts?.data.map((data: any) => (
+                            <Tabs.Content
+                                key={data.title}
+                                className="group row-span-1 relative z-0 col-span-full rounded-small transition-all duration-500 hover:bg-greyCol/10 data-[state=inactive]:hidden"
+                                value={"event"}
+                                asChild
+                            >
+                                <Link
+                                    href={`/blog/${data.slug}`}
+                                    className="flex h-full w-full flex-col items-center gap-x-0 lg:flex-row lg:gap-x-10"
+                                >
+                                    <div className="h-[274px] w-3/4 overflow-hidden rounded-sm lg:w-[234px]">
+                                        <Image
+                                            src={img}
+                                            alt=""
+                                            loading="lazy"
+                                            className="h-full w-full object-cover transition-all duration-1000 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div className="mt-10 flex h-1/2 w-3/4 flex-col gap-1 lg:mt-0">
+                                        <p className="text-xs font-semibold capitalize tracking-[3px] text-yellowSecondary">
+                                            {data.category}
+                                        </p>
+                                        <p className="mt-1 text-xs font-bold leading-7 text-secondary">
+                                            {data.title}
+                                        </p>
+                                        <p className="text-[10px] text-greyCol">
+                                            {data.content}
+                                        </p>
+                                    </div>
+                                </Link>
+                            </Tabs.Content>
+                        ))}
                     </div>
                 </div>
             </Tabs.Root>
-            <ReactPaginate
-                containerClassName={"pagination"}
-                pageClassName={"page-item"}
-                activeClassName={"active"}
-                // onPageChange={(event) => setPage(event.selected)}
-                pageCount={posts?.meta.total_page}
-                breakLabel="..."
-                previousLabel="<"
-                nextLabel=">"
-                className="mx-auto mb-24 mt-12 flex w-fit items-center gap-5"
-            />
         </div>
     );
 };
