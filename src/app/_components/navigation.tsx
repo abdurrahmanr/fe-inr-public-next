@@ -175,7 +175,7 @@ const MobileNav = () => {
                                 className={cn(
                                     "rounded bg-opacity-0 pl-6 py-2 transition duration-200 ease-in-out hover:bg-primary hover:bg-opacity-20 list-none font-semibold text-2xl text-greyCol",
                                     isActive &&
-                                        "underline decoration-primary text-secondary",
+                                    "underline decoration-primary text-secondary",
                                 )}
                             >
                                 {/* <motion.div */}
@@ -221,7 +221,7 @@ const MobileNav = () => {
                                         className={cn(
                                             "font-semibold text-2xl text-greyCol pl-14 capitalize",
                                             isActive &&
-                                                "underline decoration-primary text-secondary",
+                                            "underline decoration-primary text-secondary",
                                         )}
                                         replace
                                         title={option}
