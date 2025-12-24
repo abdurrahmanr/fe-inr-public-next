@@ -6,21 +6,17 @@ const nextConfig: NextConfig = {
             {
                 protocol: "http",
                 hostname: "localhost",
-                port: "3000",
-                pathname: "/storage/**",
-            },
-            {
-                protocol: "https",
-                hostname: "be-inr.genbiuinam.org",
+                port: "8000",
                 pathname: "/storage/**",
             },
         ],
+        dangerouslyAllowLocalIP: true,
     },
     async rewrites() {
         return [
             {
                 source: "/api/:path*",
-                destination: "https://be-inr.genbiuinam.org/api/public/:path*",
+                destination: "http://localhost:8000/api/public/:path*",
             },
         ];
     },
