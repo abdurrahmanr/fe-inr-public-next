@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@/app/_components/button";
-import img from "@/assets/kegiatan.png";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import {
@@ -15,6 +14,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
+
+interface SliderDataType {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+    created_at: string;
+}
 
 export default function Slider({ slider }: any) {
     return (
@@ -34,7 +41,7 @@ export default function Slider({ slider }: any) {
             slidesPerView={1}
             className="h-full swiper-hero"
         >
-            {slider?.data.map((slide: any, index: number) => (
+            {slider?.data.map((slide: SliderDataType, index: number) => (
                 <SwiperSlide
                     key={slide.id}
                     className="grid grid-cols-2 items-center"
@@ -49,12 +56,12 @@ export default function Slider({ slider }: any) {
                                 <div className="col-span-full flex h-full w-full items-end lg:col-span-1 lg:justify-end">
                                     <div className="lg:min-w-1/2 lg:max-w-1/2 relative h-full lg:h-4/5 w-full overflow-hidden lg:rounded-tl-[63px] after:bg-black/75 after:h-full after:w-full after:block after:absolute after:top-0 after:lg:bg-black/50">
                                         <Image
-                                            src={img}
-                                            alt=""
+                                            src={slide.image}
+                                            alt="gambar slider"
                                             fill
                                             className={cn(
                                                 scale,
-                                                "h-full w-full object-cover transition-transform duration-[5000ms] ease-out",
+                                                "h-full w-full object-cover transition-transform duration-[5000ms] ease-out"
                                             )}
                                         />
                                     </div>
@@ -66,7 +73,7 @@ export default function Slider({ slider }: any) {
                                             : "opacity-0 translate-y-3"
                                     } -order-1 col-span-full flex h-full w-full flex-col justify-center gap-7 px-8 lg:px-32 text-sm text-white lg:col-span-1 absolute z-50 top-0 max-w-200`}
                                 >
-                                    <p>{slide.date}</p>
+                                    <p>{slide.created_at}</p>
                                     <p
                                         className={`text-2xl lg:text-3xl font-bold tracking-[1.2px] text-yellowsecondary`}
                                     >
@@ -77,7 +84,7 @@ export default function Slider({ slider }: any) {
                                     </p>
                                     <Button
                                         title={"Selengkapnya"}
-                                        href={`/blog/${slide.slug}`}
+                                        href={`/kegiatan/${slide.id}`}
                                         className="bg-transparent -mt-32 lg:mt-0 text-yellowsecondary lg:text-white px-0 lg:px-6 lg:bg-secondary hover:bg-secondary/30"
                                     />
                                 </div>
