@@ -2,8 +2,6 @@
 
 import { fetcher } from "@/utils/fetcher";
 import useSWR from "swr";
-import fallbackImage from "@/assets/kegiatan.png";
-import Image from "next/image";
 import SafeImage from "@/app/_components/safe-image";
 import { cn } from "@/utils/cn";
 
@@ -71,12 +69,12 @@ const Page = () => {
                     <div className="bg-gray-200 h-full w-full animate-pulse opacity-1"></div>
                 ) : (
                     <SafeImage
-                        src={data?.data?.[index]?.image}
+                        src={data?.[index]?.image}
                         fill
                         unoptimized
                         loading="lazy"
                         className="w-full h-full object-cover hover:scale-110 transition-all duration-500 hover:rotate-1"
-                        alt=""
+                        alt="Gambar kegiatan"
                     />
                 )}
             </div>

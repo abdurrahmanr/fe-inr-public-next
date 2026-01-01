@@ -14,12 +14,9 @@ import {
     EffectCreative,
 } from "swiper/modules";
 import useSWR from "swr";
-import { ImageIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { fetcher } from "@/utils/fetcher";
 import Button from "@/app/_components/button";
-import altArrow from "@/assets/icons/arrow-right.svg";
-import Link from "next/link";
-import Image from "next/image";
+import KaryaCardSwiper from "./_components/karya-card";
 
 const Page = () => {
     const { data, isLoading } = useSWR("/api/home/work", fetcher);
@@ -43,7 +40,9 @@ const Page = () => {
             </div>
             <div className="col-span-full w-full lg:col-span-3 mt-10 lg:mt-0">
                 {isLoading ? (
-                    "Loading"
+                    <div className="flex h-[350px] lg:h-[582px] items-center justify-center">
+                        <span className="animate-pulse">Loading karya...</span>
+                    </div>
                 ) : (
                     <Swiper
                         loop={true}
@@ -95,44 +94,10 @@ const Page = () => {
                                 className="flex !h-[350px] w-[404px] justify-center lg:!h-[582px] relative"
                             >
                                 {({ isActive }) => (
-                                    <div className="relative h-full w-2/3 lg:w-full">
-                                        <div className="flex h-full w-full overflow-hidden justify-center items-center rounded-[20px] bg-[#f4f5f6]">
-                                            {data?.image === null ? (
-                                                <Image
-                                                    src={data.image}
-                                                    alt=""
-                                                    className="h-full w-full object-cover"
-                                                />
-                                            ) : (
-                                                <ImageIcon className="w-1/3 h-1/3 text-gray-400" />
-                                            )}
-                                        </div>
-                                        <div
-                                            className={`${
-                                                isActive
-                                                    ? "-translate-y-7 translate-x-7 opacity-100"
-                                                    : "opacity-0"
-                                            } absolute bottom-0 left-0 w-2/3 rounded-[10px] bg-white bg-opacity-75 py-6 text-secondary backdrop-blur-[1.5px] transition-all duration-1000 md:w-1/2 lg:w-[217px]`}
-                                        >
-                                            <div className="ml-7 flex flex-col gap-3">
-                                                <p className="text-xs font-medium text-greyCol">
-                                                    {data.concentration}
-                                                </p>
-                                                <p className="text-xs font-semibold">
-                                                    {data.title}
-                                                </p>
-                                                <Link
-                                                    href="/karya"
-                                                    className="absolute -bottom-2 -right-6 flex h-12 w-12 items-center justify-center rounded-[10px] bg-primary"
-                                                >
-                                                    <Image
-                                                        src={altArrow}
-                                                        alt=""
-                                                    />
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <KaryaCardSwiper
+                                        isActive={isActive}
+                                        item={data}
+                                    />
                                 )}
                             </SwiperSlide>
                         ))}
