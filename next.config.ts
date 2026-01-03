@@ -4,9 +4,8 @@ const nextConfig: NextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: "http",
-                hostname: "localhost",
-                port: "8000",
+                protocol: "https",
+                hostname: "be-inready.obiwannn.web.id",
                 pathname: "/storage/**",
             },
         ],
@@ -16,7 +15,8 @@ const nextConfig: NextConfig = {
         return [
             {
                 source: "/api/:path*",
-                destination: "http://localhost:8000/api/public/:path*",
+                destination:
+                    "https://be-inready.obiwannn.web.id/api/public/:path*",
             },
         ];
     },
