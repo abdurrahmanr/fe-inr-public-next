@@ -1,46 +1,47 @@
 "use client";
 
 import StrukturCardSkeleton from "@/app/_components/struktur/struktur-card-skeleton";
-import { Tabs } from "radix-ui";
-import StrukturCard from "../../profil/struktur-organisasi/_components/card";
-import { useState } from "react";
+import StrukturCard from "@/app/_components/struktur/struktur-card";
 import { fetchWithParams } from "@/utils/fetcher";
 import NoData from "@/app/_components/no-data";
-import useSWRImmutable from "swr/immutable";
+import useSWR from "swr";
 
-const MemberList = () => {
-    const [queryParams, setQueryParams] = useState("");
-    const { data: members, isLoading } = useSWRImmutable(
-        "/api/member",
+interface MemberListProps {
+    selectedAngkatan: string;
+}
+
+const MemberList = ({ selectedAngkatan }: MemberListProps) => {
+    const getAngkatanValue = (label: string) => {
+        if (label === "angkatan pendiri") return 0;
+        return label.replace("angkatan ", "");
+    };
+
+    const apiParam = getAngkatanValue(selectedAngkatan);
+
+    const { data: members, isLoading } = useSWR(
+        `/api/member?angkatan=${apiParam}`,
         fetchWithParams,
         {
             shouldRetryOnError: false,
-        },
+        }
     );
 
     if ((!members || members.data.length === 0) && !isLoading) {
         return <NoData />;
     }
+
     return (
         <div className="my-7 grid w-full grid-cols-1 gap-x-6 gap-y-14 md:grid-cols-3 lg:grid-cols-4">
             {isLoading
                 ? Array.from({ length: 4 }).map((_, index) => (
-                      <Tabs.Content
-                          className="relative flex justify-center"
-                          key={index}
-                          value="angkatan pendiri"
-                      >
-                          <StrukturCardSkeleton key={index} />
-                      </Tabs.Content>
+                      <div key={index} className="relative flex justify-center">
+                          <StrukturCardSkeleton />
+                      </div>
                   ))
-                : members.data.map((data: any) => (
-                      <Tabs.Content
-                          className="relative flex justify-center"
-                          key={data.name}
-                          value="angkatan pendiri"
-                      >
-                          <StrukturCard {...data} angkatan={true} />
-                      </Tabs.Content>
+                : members.data.map((data, index: number) => (
+                      <div key={index} className="relative flex justify-center">
+                          <StrukturCard {...data} />
+                      </div>
                   ))}
         </div>
     );
