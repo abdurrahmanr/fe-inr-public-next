@@ -79,9 +79,12 @@ export default function Slider({ slider }: any) {
                                     >
                                         {slide.title}
                                     </p>
-                                    <p className="mb-72 lg:mb-0">
-                                        {slide.description}
-                                    </p>
+                                    <div
+                                        className="mb-72 lg:mb-0"
+                                        dangerouslySetInnerHTML={{
+                                            __html: slide.description,
+                                        }}
+                                    />
                                     <Button
                                         title={"Selengkapnya"}
                                         href={`/kegiatan/${slide.id}`}
