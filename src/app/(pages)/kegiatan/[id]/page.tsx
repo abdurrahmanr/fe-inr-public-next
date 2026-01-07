@@ -22,9 +22,7 @@ export async function generateMetadata({
 }
 
 async function fetchActivity({ id }: { id: number }) {
-    const res = await fetch(
-        `http://localhost:8000/api/public/activity/show/${id}`
-    );
+    const res = await fetch(`${process.env.API_URL}/activity/show/${id}`);
     const result = await res.json();
     return result.data;
 }
