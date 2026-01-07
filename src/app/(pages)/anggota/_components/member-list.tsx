@@ -38,7 +38,7 @@ const MemberList = ({ selectedAngkatan }: MemberListProps) => {
                           <StrukturCardSkeleton />
                       </div>
                   ))
-                : members.data.map((data, index: number) => (
+                : members.data.map((data: any, index: number) => (
                       <div key={index} className="relative flex justify-center">
                           <StrukturCard {...data} />
                       </div>

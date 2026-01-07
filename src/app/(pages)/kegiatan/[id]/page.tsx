@@ -71,7 +71,7 @@ export default async function Page({
                                       </div>
                                   </div>
                               ))
-                            : activity?.flayer_image.map((data, index) => (
+                            : activity?.flayer_image.map((data: any, index: number) => (
                                   <div
                                       className="relative flex h-[174px] w-full items-center justify-center overflow-hidden rounded-primary border border-black bg-[#FBFAFC]"
                                       key={index}

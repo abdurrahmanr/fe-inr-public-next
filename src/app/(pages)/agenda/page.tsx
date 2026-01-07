@@ -54,7 +54,7 @@ const Page = () => {
                         {isLoading ? (
                             <AgendaSkeleton />
                         ) : (
-                            data?.data.map((agenda, index: number) => (
+                            data?.data.map((agenda: any, index: number) => (
                                 <AgendaCard key={index} data={agenda} />
                             ))
                         )}
