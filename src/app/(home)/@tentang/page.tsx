@@ -3,29 +3,19 @@
 import heroAbout from "@/assets/img/heroAbout.jpeg";
 import { underlineTitle } from "@/utils/utils";
 import Image from "next/image";
-import { motion } from "motion/react";
 import Button from "@/app/_components/button";
 
 const Page = () => {
     return (
         <div className="my-36 flex w-full flex-col items-center justify-center">
-            <motion.div
-                initial={{ y: 100 }}
-                whileInView={{ y: 0 }}
-                transition={{
-                    duration: 0.4,
-                    scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-                }}
-            >
-                <div className="w-full overflow-hidden rounded-[20px] shadow-xl lg:w-full">
-                    <Image
-                        src={heroAbout}
-                        alt=""
-                        loading="lazy"
-                        className="h-full w-full"
-                    />
-                </div>
-            </motion.div>
+            <div className="w-full overflow-hidden rounded-[20px] shadow-xl lg:w-full">
+                <Image
+                    src={heroAbout}
+                    alt=""
+                    loading="lazy"
+                    className="h-full w-full"
+                />
+            </div>
 
             <div className="mt-[91px] flex w-full flex-col items-center gap-[60px] lg:flex-row">
                 <p className="text-2xl font-bold leading-[38px] text-primary">
