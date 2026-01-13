@@ -56,35 +56,35 @@ export default async function Page({
                     <div className="grid grid-cols-1 items-center justify-center gap-x-3 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
                         {!activity
                             ? [...Array(3)].map((_, index) => (
-                                  <div
-                                      key={index}
-                                      className="h-[174px] w-full animate-pulse rounded-primary bg-gray-200"
-                                  >
-                                      <div className="flex h-full w-full items-center justify-center text-gray-300">
-                                          <svg
-                                              className="h-10 w-10"
-                                              fill="currentColor"
-                                              viewBox="0 0 24 24"
-                                          >
-                                              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
-                                          </svg>
-                                      </div>
-                                  </div>
-                              ))
-                            : activity?.flayer_image.map((data: any, index: number) => (
-                                  <div
-                                      className="relative flex h-[174px] w-full items-center justify-center overflow-hidden rounded-primary border border-black bg-[#FBFAFC]"
-                                      key={index}
-                                  >
-                                      <Image
-                                          src={data}
-                                          alt="Gambar kegiatan"
-                                          fill
-                                          className="object-cover"
-                                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                      />
-                                  </div>
-                              ))}
+                                <div
+                                    key={index}
+                                    className="h-[174px] w-full animate-pulse rounded-primary bg-gray-200"
+                                >
+                                    <div className="flex h-full w-full items-center justify-center text-gray-300">
+                                        <svg
+                                            className="h-10 w-10"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            ))
+                            : activity?.flayer_image.map((url: string, index: number) => (
+                                <div
+                                    className="relative flex h-[174px] w-full items-center justify-center overflow-hidden rounded-primary border border-black bg-[#FBFAFC]"
+                                    key={index}
+                                >
+                                    <Image
+                                        src={url}
+                                        alt="Gambar kegiatan"
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
+                                </div>
+                            ))}
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import useSWR from "swr";
 import { fetcher } from "@/utils/fetcher";
 import KegiatanCard from "./_components/card";
 import ReactPaginate from "react-paginate";
+import { Kegiatan } from "@/types/api";
 
 const filters = ["terbaru", "terlama", "relevan"] as const;
 
@@ -40,7 +41,7 @@ const Page = () => {
                         <Dropdown
                             activeFilter={filter}
                             lists={filters}
-                            setFilter={(val) => {
+                            setFilter={(val: string) => {
                                 setFilter(val);
                                 setPage(1); // Reset ke halaman 1 jika filter berubah
                             }}
@@ -63,7 +64,7 @@ const Page = () => {
                                     <div className="h-[350px] w-full animate-pulse bg-gray-200"></div>
                                 </div>
                             ))
-                            : data?.data.map((data: any) => (
+                            : data?.data.map((data: Kegiatan) => (
                                 <Fragment key={data.id}>
                                     <KegiatanCard data={data} />
                                 </Fragment>

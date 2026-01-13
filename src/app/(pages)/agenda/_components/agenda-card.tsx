@@ -1,7 +1,8 @@
 import calendarIcon from "@/assets/icons/calendar.svg";
+import { Agenda } from "@/types/api";
 import Image from "next/image";
 
-const AgendaCard = ({ data }: any) => {
+const AgendaCard = ({ data }: { data: Agenda }) => {
     return (
         <div
             key={data.id}

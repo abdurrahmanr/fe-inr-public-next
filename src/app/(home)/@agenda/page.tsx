@@ -10,6 +10,7 @@ import useSWR from "swr";
 import Image from "next/image";
 import AgendaCard from "./_components/agenda-card";
 import AgendaCardSkeleton from "./_components/agenda-skeleton";
+import { Agenda } from "@/types/api";
 
 const Page = () => {
     const { data, isLoading } = useSWR("/api/home/agenda", fetcher);
@@ -20,7 +21,7 @@ const Page = () => {
             <div className="mt-12 grid grid-cols-12 gap-y-16 md:gap-y-0">
                 {data?.data.length === 0 ? (
                     <div className="col-span-full">
-                        <p>data tidak ada</p>
+                        <p>Tidak ada data yang ditemukan</p>
                     </div>
                 ) : isLoading ? (
                     <AgendaCardSkeleton />
@@ -61,12 +62,12 @@ const Page = () => {
                             <p className="font-semibold text-yellowsecondary">
                                 Agenda yang akan datang
                             </p>
-                            <div className="mt-9 flex h-full w-full flex-col rounded-t-[20px] outline-2 outline-[#6D6E76]/[.1]">
-                                {data?.data.map(
-                                    (agenda: any, index: number) => (
+                            <div className="mt-9 flex h-full w-full flex-col rounded-t-[20px] outline-2 outline-[#6D6E76]/[.1] relative">
+                                {data ? data?.data.map(
+                                    (agenda: Agenda, index: number) => (
                                         <AgendaCard key={index} item={agenda} />
                                     )
-                                )}
+                                ) : <span className="m-auto">Tidak ada agenda yang ditemukan</span>}
                             </div>
                             <div className="-mt-[0.9px] flex h-12 w-full items-center justify-center rounded-b-[20px] bg-primary text-xs">
                                 <Link href="/agenda">

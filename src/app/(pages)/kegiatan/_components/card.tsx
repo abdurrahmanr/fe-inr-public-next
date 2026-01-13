@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Kegiatan } from "@/types/api";
 
-const KegiatanCard = ({ data }: any) => {
+const KegiatanCard = ({ data }: { data: Kegiatan }) => {
     return (
         <div className="group relative w-full max-w-[250px] overflow-hidden rounded-2xl bg-primary">
             <div className="h-84">
