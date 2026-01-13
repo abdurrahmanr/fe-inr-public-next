@@ -41,7 +41,7 @@ const Page = () => {
                         <Dropdown
                             activeFilter={filter}
                             lists={filters}
-                            setFilter={(val: string) => {
+                            setFilter={(val) => {
                                 setFilter(val);
                                 setPage(1); // Reset ke halaman 1 jika filter berubah
                             }}
