@@ -1,5 +1,4 @@
 "use client";
-import { motion, AnimatePresence } from "motion/react";
 
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { TriangleDownIcon } from "@radix-ui/react-icons";

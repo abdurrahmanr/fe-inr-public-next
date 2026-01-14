@@ -7,12 +7,16 @@ import useSWR from "swr";
 import { fetcher } from "@/utils/fetcher";
 import KegiatanCard from "./_components/card";
 import ReactPaginate from "react-paginate";
+import { Kegiatan } from "@/types/api";
 
-const filters = ["terbaru", "terlama", "relevan"];
+const filters = ["terbaru", "terlama", "relevan"] as const;
+
+export type Filter = typeof filters[number];
+
 
 const Page = () => {
     const [page, setPage] = useState(1);
-    const [filter, setFilter] = useState(filters[0]);
+    const [filter, setFilter] = useState<Filter>("terbaru");
 
     const { data, isLoading } = useSWR(
         `/api/activity?page=${page}&filter=${filter}`,
@@ -53,18 +57,18 @@ const Page = () => {
                     <div className="mt-16 grid grid-flow-row grid-cols-1 justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-3">
                         {isLoading
                             ? [...Array(3)].map((_, index) => (
-                                  <div
-                                      key={index}
-                                      className="relative flex w-full max-w-[250px] flex-col gap-3 overflow-hidden rounded-2xl"
-                                  >
-                                      <div className="h-[350px] w-full animate-pulse bg-gray-200"></div>
-                                  </div>
-                              ))
-                            : data?.data.map((data: any) => (
-                                  <Fragment key={data.id}>
-                                      <KegiatanCard data={data} />
-                                  </Fragment>
-                              ))}
+                                <div
+                                    key={index}
+                                    className="relative flex w-full max-w-[250px] flex-col gap-3 overflow-hidden rounded-2xl"
+                                >
+                                    <div className="h-[350px] w-full animate-pulse bg-gray-200"></div>
+                                </div>
+                            ))
+                            : data?.data.map((data: Kegiatan) => (
+                                <Fragment key={data.id}>
+                                    <KegiatanCard data={data} />
+                                </Fragment>
+                            ))}
                     </div>
                 </div>
             </div>

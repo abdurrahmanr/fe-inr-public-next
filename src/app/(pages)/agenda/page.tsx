@@ -8,6 +8,7 @@ import Countdown from "react-countdown";
 import useSWR from "swr";
 import AgendaSkeleton from "./_components/agenda-skeleton";
 import AgendaCard from "./_components/agenda-card";
+import { Agenda } from "@/types/api";
 
 const Page = () => {
     const { data, isLoading } = useSWR(`/api/agenda`, fetcher);
@@ -54,7 +55,7 @@ const Page = () => {
                         {isLoading ? (
                             <AgendaSkeleton />
                         ) : (
-                            data?.data.map((agenda: any, index: number) => (
+                            data?.data.map((agenda: Agenda, index: number) => (
                                 <AgendaCard key={index} data={agenda} />
                             ))
                         )}

@@ -1,16 +1,9 @@
 import { convertDate } from "@/utils/utils";
 import CalendarIcon from "@/assets/icons/calendar.svg";
 import Image from "next/image";
+import { Agenda } from "@/types/api";
 
-interface AgendaCardParams {
-    item: {
-        id: number;
-        title: string;
-        time: Date;
-    };
-}
-
-const AgendaCard = ({ item }: AgendaCardParams) => {
+const AgendaCard = ({ item }: { item: Agenda }) => {
     return (
         <div key={item.id} className="flex flex-col text-secondary">
             <div className="px-9 py-7">
@@ -18,7 +11,7 @@ const AgendaCard = ({ item }: AgendaCardParams) => {
                 <div className="mt-2 flex items-center gap-[6px]">
                     <Image src={CalendarIcon} alt="icon calender" />
                     <p className="mt-px text-[10px] font-light">
-                        {convertDate(item.time)}
+                        {convertDate(new Date(item.time))}
                     </p>
                 </div>
             </div>
