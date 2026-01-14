@@ -2,9 +2,7 @@ import Slider from "./_components/slider";
 
 export async function getSlides() {
     try {
-        const res = await fetch(
-            `${process.env.API_URL}/slide`
-        );
+        const res = await fetch(`${process.env.API_URL}/home/slider`);
         const result = await res.json();
         return result;
     } catch (err) {

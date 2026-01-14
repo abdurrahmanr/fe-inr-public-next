@@ -6,10 +6,12 @@ import { fetcher } from "@/utils/fetcher";
 import Image from "next/image";
 import Countdown from "react-countdown";
 import useSWR from "swr";
-import Card from "./_components/card";
+import AgendaSkeleton from "./_components/agenda-skeleton";
+import AgendaCard from "./_components/agenda-card";
+import { Agenda } from "@/types/api";
 
 const Page = () => {
-    const { data, error, isLoading } = useSWR(`/api/agenda`, fetcher);
+    const { data, isLoading } = useSWR(`/api/agenda`, fetcher);
 
     return (
         <>
@@ -37,7 +39,10 @@ const Page = () => {
                                 <p className="text-[13px]">
                                     Kegiatan Dimulai dalam:
                                 </p>
-                                {/* <Countdown date={data?.data[0].time ?? 0} renderer={Renderer} /> */}
+                                <Countdown
+                                    date={data?.data[0].time ?? 0}
+                                    renderer={Renderer}
+                                />
                             </>
                         )}
                     </div>
@@ -47,7 +52,13 @@ const Page = () => {
                         Agenda yang akan datang
                     </p>
                     <div className="mt-10 grid grid-cols-12 gap-6">
-                        <Card data={data} loading={isLoading} error={error} />
+                        {isLoading ? (
+                            <AgendaSkeleton />
+                        ) : (
+                            data?.data.map((agenda: Agenda, index: number) => (
+                                <AgendaCard key={index} data={agenda} />
+                            ))
+                        )}
                     </div>
                 </div>
             </div>

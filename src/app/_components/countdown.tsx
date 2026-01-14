@@ -41,20 +41,20 @@ const Renderer = ({
         return (
             <div className="flex justify-evenly gap-1">
                 <div className="flex items-baseline font-semibold capitalize gap-1">
-                    <p className="text-2xl">{zeroPad(days)}</p>
+                    <p className="text-2xl">{zeroPad(days ?? 0)}</p>
                     <p className="text-xs">hari</p>
                 </div>
                 <p></p>
                 <div className="flex items-baseline font-semibold capitalize gap-1">
-                    <p className="text-2xl">{zeroPad(hours)}</p>
+                    <p className="text-2xl">{zeroPad(hours ?? 0)}</p>
                     <p className="text-xs">jam</p>
                 </div>
                 <div className="flex items-baseline font-semibold capitalize gap-1">
-                    <p className="text-2xl">{zeroPad(minutes)}</p>
+                    <p className="text-2xl">{zeroPad(minutes ?? 0)}</p>
                     <p className="text-xs">menit</p>
                 </div>
                 <div className="flex items-baseline font-semibold capitalize gap-1">
-                    <p className="text-2xl">{zeroPad(seconds)}</p>
+                    <p className="text-2xl">{zeroPad(seconds ?? 0)}</p>
                     <p className="text-xs">detik</p>
                 </div>
             </div>

@@ -4,23 +4,19 @@ const nextConfig: NextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: "http",
-                hostname: "localhost",
-                port: "3000",
-                pathname: "/storage/**",
-            },
-            {
                 protocol: "https",
-                hostname: "be-inr.genbiuinam.org",
+                hostname: "be-inready.obiwannn.web.id",
                 pathname: "/storage/**",
             },
         ],
+        dangerouslyAllowLocalIP: true,
     },
     async rewrites() {
         return [
             {
                 source: "/api/:path*",
-                destination: "https://be-inr.genbiuinam.org/api/public/:path*",
+                destination:
+                    "https://be-inready.obiwannn.web.id/api/public/:path*",
             },
         ];
     },

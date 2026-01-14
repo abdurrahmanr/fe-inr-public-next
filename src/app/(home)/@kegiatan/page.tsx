@@ -2,10 +2,9 @@
 
 import { fetcher } from "@/utils/fetcher";
 import useSWR from "swr";
-import fallbackImage from "@/assets/kegiatan.png";
-import Image from "next/image";
-import SafeImage from "@/app/_components/safe-image";
 import { cn } from "@/utils/cn";
+import Image from "next/image";
+import { ImageIcon } from "@radix-ui/react-icons";
 
 const imageLayout = [
     // Group 1 (left column top)
@@ -65,18 +64,30 @@ const Page = () => {
     const { data, isLoading } = useSWR("/api/home/gallery", fetcher);
 
     const renderImage = (index: number, wrapper: string) => {
+
+        if (!data?.[index]?.image) {
+            return (
+                <div key={index} className={wrapper}>
+                    <div className="w-full h-full object-cover hover:scale-110 transition-all duration-500 hover:rotate-1 flex justify-center items-center"
+                    >
+                        <ImageIcon className="w-1/3 h-full text-greyCol/40" />
+                    </div>
+                </div>
+            )
+        }
+
         return (
             <div key={index} className={cn(wrapper, "transition-all")}>
                 {isLoading ? (
                     <div className="bg-gray-200 h-full w-full animate-pulse opacity-1"></div>
                 ) : (
-                    <SafeImage
-                        src={data?.data?.[index]?.image}
+                    <Image
+                        src={data?.[index]?.image}
                         fill
                         unoptimized
                         loading="lazy"
                         className="w-full h-full object-cover hover:scale-110 transition-all duration-500 hover:rotate-1"
-                        alt=""
+                        alt="Gambar kegiatan"
                     />
                 )}
             </div>
@@ -84,7 +95,7 @@ const Page = () => {
     };
 
     return (
-        <div className="h-fit text-center flex flex-col gap-3 overflow-hidden">
+        <div className="h-fit text-center flex flex-col gap-3 overflow-hidden my-12">
             <p className="text-greyCol/50 font-semibold text-[13px] leading-[19px]">
                 #INREADYWORKGROUP
             </p>

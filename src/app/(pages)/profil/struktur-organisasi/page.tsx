@@ -3,10 +3,9 @@
 import { fetcher } from "@/utils/fetcher";
 import useSWR from "swr";
 import StrukturList from "./_components/struktur-list";
-import { pengurus } from "@/app/_components/constants";
 
 const Page = () => {
-    const { data: struktur } = useSWR(`/api/bpo`, fetcher);
+    const { data: struktur, isLoading } = useSWR(`/api/bpo`, fetcher);
 
     return (
         <>
@@ -18,22 +17,48 @@ const Page = () => {
                     <p>Periode 2022-2023</p>
                 </div>
 
-                <StrukturList
-                    title={"Pembina Inready Workgroup"}
-                    data={struktur?.pembina}
-                />
-                <StrukturList
-                    title={"BPO Inready Workgroup"}
-                    data={struktur?.presidium}
-                />
-                {struktur?.bpo.map((bpo: any, index: number) => (
-                    <StrukturList
-                        key={index}
-                        title={bpo.name}
-                        data={bpo.division}
-                        divisi={true}
-                    />
-                ))}
+                {isLoading ? (
+                    <div className="mt-8 flex flex-col gap-6 animate-pulse">
+                        {[1, 2, 3].map((item) => (
+                            <div key={item} className="w-full">
+                                <div className="h-4 w-1/3 bg-gray-200 rounded mb-4"></div>
+                                <div className="h-32 w-full bg-gray-100 rounded-lg border border-gray-200"></div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <>
+                        {struktur && (
+                            <>
+                                <StrukturList
+                                    title={"Pembina Inready Workgroup"}
+                                    data={struktur?.pembina}
+                                />
+
+                                <StrukturList
+                                    title={"Dewan Pertimbangan Organisasi"}
+                                    data={struktur?.dpo}
+                                />
+
+                                <StrukturList
+                                    title={"BPO Inready Workgroup"}
+                                    data={struktur?.presidium}
+                                />
+
+                                {struktur?.bpo?.map(
+                                    (bpo: any, index: number) => (
+                                        <StrukturList
+                                            key={index}
+                                            title={bpo.name}
+                                            data={bpo.division}
+                                            divisi={true}
+                                        />
+                                    )
+                                )}
+                            </>
+                        )}
+                    </>
+                )}
             </div>
         </>
     );

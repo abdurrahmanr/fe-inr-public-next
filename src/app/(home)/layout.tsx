@@ -3,7 +3,6 @@ export default function Layout({
     konsentrasi,
     tentang,
     karya,
-    blog,
     kegiatan,
     agenda,
 }: {
@@ -23,7 +22,7 @@ export default function Layout({
             <span className="h-[0.7px] w-full bg-[#C7C7C7] mb-10 block" />
             <div className={maxWidth}>{tentang}</div>
             {karya}
-            {blog}
+            {/* {blog} */}
             {kegiatan}
             {agenda}
         </main>

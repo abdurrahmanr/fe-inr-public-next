@@ -1,10 +1,8 @@
-import { fetchWithParams } from "@/utils/fetcher";
+"use client";
+
 import * as Tabs from "@radix-ui/react-tabs";
-// import StrukturCard from "../../components/profile/StrukturCard";
-import useSWR from "swr";
-import StrukturCard from "../profil/struktur-organisasi/_components/card";
-import StrukturCardSkeleton from "@/app/_components/struktur/struktur-card-skeleton";
 import MemberList from "./_components/member-list";
+import { useState } from "react";
 
 const angkatan = [
     "angkatan pendiri",
@@ -18,9 +16,17 @@ const angkatan = [
     "angkatan 8",
     "angkatan 9",
     "angkatan 10",
+    "angkatan 11",
+    "angkatan 12",
+    "angkatan 13",
+    "angkatan 14",
+    "angkatan 15",
+    "angkatan 16",
 ];
 
 const Page = () => {
+    const [selectedTab, setSelectedTab] = useState(angkatan[0]);
+
     return (
         <>
             <div className="my-24 flex w-full flex-col items-center text-center">
@@ -29,7 +35,7 @@ const Page = () => {
                         ANGGOTA KAMI
                     </p>
                     <p className="text-2xl capitalize leading-10 lg:leading-[62px] text-secondary">
-                        Anggota Inready Workgroup{" "}
+                        Anggota Inready Workgroup
                     </p>
                     <p className="font-normal normal-case leading-9 text-greyCol/50">
                         There are many variations of passages of Lorem Ipsum
@@ -37,12 +43,12 @@ const Page = () => {
                         by injected humour
                     </p>
                 </div>
-
                 <Tabs.Root
-                    defaultValue={angkatan[0]}
+                    value={selectedTab} // 3. Control component dengan value
+                    onValueChange={setSelectedTab} // 4. Update state saat tab diklik
                     className="relative z-0 mt-11 w-full"
                 >
-                    <div className="relative flex w-full overflow-x-auto">
+                    <div className="relative flex w-full overflow-x-auto px-4 lg:px-0">
                         <Tabs.List className="flex flex-shrink-0 justify-center gap-5">
                             {angkatan.map((data) => (
                                 <Tabs.Trigger
@@ -55,8 +61,10 @@ const Page = () => {
                             ))}
                         </Tabs.List>
                     </div>
-                    <MemberList />
-                </Tabs.Root>
+                    <Tabs.Content value={selectedTab} className="w-full">
+                        <MemberList selectedAngkatan={selectedTab} />
+                    </Tabs.Content>
+                </Tabs.Root>{" "}
                 {/* <ReactPaginate */}
                 {/*   containerClassName={"pagination"} */}
                 {/*   pageClassName={"page-item"} */}
