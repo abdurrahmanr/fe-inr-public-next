@@ -22,7 +22,9 @@ export async function generateMetadata({
 }
 
 async function fetchActivity({ id }: { id: number }) {
-    const res = await fetch(`${process.env.API_URL}/activity/show/${id}`);
+    const res = await fetch(
+        `https://be-inready.obiwannn.web.id/api/public/activity/show/${id}`
+    );
     const result = await res.json();
     return result.data;
 }
@@ -71,20 +73,22 @@ export default async function Page({
                                       </div>
                                   </div>
                               ))
-                            : activity?.flayer_image.map((data: any, index: number) => (
-                                  <div
-                                      className="relative flex h-[174px] w-full items-center justify-center overflow-hidden rounded-primary border border-black bg-[#FBFAFC]"
-                                      key={index}
-                                  >
-                                      <Image
-                                          src={data}
-                                          alt="Gambar kegiatan"
-                                          fill
-                                          className="object-cover"
-                                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                      />
-                                  </div>
-                              ))}
+                            : activity?.flayer_image.map(
+                                  (data: any, index: number) => (
+                                      <div
+                                          className="relative flex h-[174px] w-full items-center justify-center overflow-hidden rounded-primary border border-black bg-[#FBFAFC]"
+                                          key={index}
+                                      >
+                                          <Image
+                                              src={data}
+                                              alt="Gambar kegiatan"
+                                              fill
+                                              className="object-cover"
+                                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                          />
+                                      </div>
+                                  )
+                              )}
                     </div>
                 </div>
             </div>
