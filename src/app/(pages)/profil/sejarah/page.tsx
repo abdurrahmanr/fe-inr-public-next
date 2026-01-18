@@ -15,17 +15,29 @@ const Page = () => {
                 </p>
                 <div className="mt-9 flex flex-col gap-9 text-greyCol indent-[35px] text-sm md:text-base">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur. A at libero orci
-                        luctus sollicitudin posuere lectus libero pellentesque.
-                        Tempus tellus urna mauris molestie purus donec egestas.
-                        Morbi quisque magna lobortis urna fringilla eget sed
-                        etiam. Adipiscing etiam cursus nisl integer sociis augue
-                        eget donec. Lorem ipsum dolor sit amet consectetur. A at
-                        libero orci luctus sollicitudin posuere lectus libero
-                        pellentesque. Tempus tellus urna mauris molestie purus
-                        donec egestas. Morbi quisque magna lobortis urna
-                        fringilla eget sed etiam. Adipiscing etiam cursus nisl
-                        integer sociis augue eget donec.
+                        Study Club Inready berawal dari komunitas mahasiswa
+                        Teknik Informatika UIN Alauddin Makassar yang aktif
+                        membangun jejaring dan kegiatan pengembangan diri di
+                        kampus. Untuk memperluas dampak lintas angkatan dan
+                        menata aktivitas pembelajaran yang berkelanjutan,
+                        beberapa anggota menginisiasi transformasi menjadi study
+                        club. Melalui serangkaian tahapan internal, pada 03
+                        April 2007 dideklarasikan komunitas bernama INFINITY
+                        (Information Technology Students Community) lengkap
+                        dengan logo/lambang, AD/ART, visi–misi, dan ikrar.
+                        Periode 2008–2010 menjadi masa keemasan: tiga angkatan
+                        (2008, 2009, 2010) konsisten menyelenggarakan program
+                        tahunan sehingga Infinity menjadi penopang ekosistem
+                        akademik dan kompetensi mahasiswa TI UIN Makassar.
+                        Seiring kebutuhan perluasan peran, pada 28 Mei
+                        (bertepatan dengan Mubes IV) dilakukan rekonstruksi
+                        identitas dari INFINITY CORPORATION menjadi INREADY
+                        WORKGROUP. Perubahan ini menegaskan misi pasal 3:
+                        Inready bukan hanya ruang pengembangan ilmu TI dan
+                        penguatan diri, tetapi juga membuka akses peluang kerja
+                        serta kolaborasi profesional melalui jejaring alumni,
+                        perusahaan, dan mitra untuk membangun jaringan
+                        mutualisme berkelanjutan.
                     </p>
                 </div>
                 <div className="my-24">

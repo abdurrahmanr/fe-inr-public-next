@@ -7,6 +7,8 @@ import StrukturList from "./_components/struktur-list";
 const Page = () => {
     const { data: struktur, isLoading } = useSWR(`/api/bpo`, fetcher);
 
+    console.log(struktur);
+
     return (
         <>
             <div className="w-full text-justify">
@@ -53,7 +55,7 @@ const Page = () => {
                                             data={bpo.division}
                                             divisi={true}
                                         />
-                                    )
+                                    ),
                                 )}
                             </>
                         )}
