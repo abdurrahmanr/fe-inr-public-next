@@ -1,35 +1,35 @@
-name: Deploy Next.js (Bun) to aaPanel
+# name: Deploy Next.js (Bun) to aaPanel
 
-on:
-  push:
-    branches: ["main"]
+# on:
+#   push:
+#     branches: ["main"]
 
-jobs:
-  deploy:
-    name: Deploy to VPS
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     name: Deploy to VPS
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST_SEMENTARA }}
-          username: ${{ secrets.USERNAME_SEMENTARA }}
-          key: ${{ secrets.SSH_KEY_SEMENTARA }}
-          port: ${{ secrets.PORT_SEMENTARA }}
+#     steps:
+#       - name: Deploy via SSH
+#         uses: appleboy/ssh-action@v1.0.3
+#         with:
+#           host: ${{ secrets.HOST_SEMENTARA }}
+#           username: ${{ secrets.USERNAME_SEMENTARA }}
+#           key: ${{ secrets.SSH_KEY_SEMENTARA }}
+#           port: ${{ secrets.PORT_SEMENTARA }}
 
-          script: |
-            # 1. Pindah ke folder project (menggunakan secret PATH)
-            cd ${{ secrets.PATH_SEMENTARA }}
+#           script: |
+#             # 1. Pindah ke folder project (menggunakan secret PATH)
+#             cd ${{ secrets.PATH_SEMENTARA }}
 
-            # 2. Tarik kode terbaru dari git
-            git pull origin main
+#             # 2. Tarik kode terbaru dari git
+#             git pull origin main
 
-            # 3. Install dependencies menggunakan Bun
-            ~/.bun/bin/bun install --frozen-lockfile
+#             # 3. Install dependencies menggunakan Bun
+#             ~/.bun/bin/bun install --frozen-lockfile
 
-            # 4. Build project Next.js
-            ~/.bun/bin/bun run build
+#             # 4. Build project Next.js
+#             ~/.bun/bin/bun run build
 
-            # 5. Restart aplikasi di PM2
-            pm2 restart ${{ secrets.FOLDER_NAME }}
+#             # 5. Restart aplikasi di PM2
+#             pm2 restart ${{ secrets.FOLDER_NAME }}
