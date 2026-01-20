@@ -1,6 +1,6 @@
 "use client";
 
-import heroAgenda from "@/assets/heroAgenda.png";
+import heroAgenda from "@/assets/heroAgenda.webp";
 import Renderer from "@/app/_components/countdown";
 import { fetcher } from "@/utils/fetcher";
 import { underlineTitle } from "@/utils/utils";
@@ -39,7 +39,7 @@ const Page = () => {
                                         />
                                     </div>
                                     <div className="my-6 flex w-full flex-col gap-4 px-[42px]">
-                                        <p className="text-xl font-semibold uppercase">
+                                        <p className="text-xl font-semibold uppercase line-clamp-2">
                                             {data?.data[0].title}
                                         </p>
                                         <p className="text-xs text-greyCol">
@@ -58,16 +58,25 @@ const Page = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-span-full flex flex-col items-center justify-center lg:col-span-6">
+                        <div className="col-span-full flex flex-col items-center justify-center lg:col-span-6 h-fit">
                             <p className="font-semibold text-yellowsecondary">
                                 Agenda yang akan datang
                             </p>
                             <div className="mt-9 flex h-full w-full flex-col rounded-t-[20px] outline-2 outline-[#6D6E76]/[.1] relative">
-                                {data ? data?.data.map(
-                                    (agenda: Agenda, index: number) => (
-                                        <AgendaCard key={index} item={agenda} />
+                                {data ? (
+                                    data?.data.map(
+                                        (agenda: Agenda, index: number) => (
+                                            <AgendaCard
+                                                key={index}
+                                                item={agenda}
+                                            />
+                                        ),
                                     )
-                                ) : <span className="m-auto">Tidak ada agenda yang ditemukan</span>}
+                                ) : (
+                                    <span className="m-auto">
+                                        Tidak ada agenda yang ditemukan
+                                    </span>
+                                )}
                             </div>
                             <div className="-mt-[0.9px] flex h-12 w-full items-center justify-center rounded-b-[20px] bg-primary text-xs">
                                 <Link href="/agenda">
