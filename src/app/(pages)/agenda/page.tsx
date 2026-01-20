@@ -1,7 +1,7 @@
 "use client";
 
 import Renderer from "@/app/_components/countdown";
-import heroAgenda from "@/assets/heroAgenda.png";
+import heroAgenda from "@/assets/heroAgenda.webp";
 import { fetcher } from "@/utils/fetcher";
 import Image from "next/image";
 import Countdown from "react-countdown";

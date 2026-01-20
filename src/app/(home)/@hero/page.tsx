@@ -2,9 +2,7 @@ import Slider from "./_components/slider";
 
 export async function getSlides() {
     try {
-        const res = await fetch(
-            `https://be-inready.obiwannn.web.id/api/public/home/slider`
-        );
+        const res = await fetch(`${process.env.API_URL}/home/slider`);
         const result = await res.json();
         return result;
     } catch (err) {
